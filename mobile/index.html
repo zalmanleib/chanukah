@@ -15,27 +15,35 @@
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
+      min-height: 100vh; /* Full screen height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     h1 {
       color: #ffd700; /* Gold */
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
     .player-container {
       background: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      margin: 0 auto;
     }
     .btn-controls {
-      margin: 10px;
-      width: 100px;
-      font-size: 16px;
+      margin: 10px 0;
+      width: 100%; /* Full width for mobile buttons */
+      font-size: 1.2rem;
     }
     .volume-control input {
       width: 100%;
     }
     .volume-label {
-      font-size: 14px;
+      font-size: 1rem;
       margin-bottom: 5px;
     }
     /* Mobile Styles */
@@ -47,8 +55,7 @@
         padding: 15px;
       }
       .btn-controls {
-        width: 80px;
-        font-size: 14px;
+        font-size: 1rem;
       }
     }
   </style>
@@ -65,13 +72,13 @@
     <!-- Buttons -->
     <div class="mt-3">
       <button id="playButton" class="btn btn-primary btn-controls" onclick="playAudio()">
-        <i class="fas fa-play"></i>
+        <i class="fas fa-play"></i> Play
       </button>
       <button id="muteButton" class="btn btn-secondary btn-controls" onclick="toggleMute()">
-        <i id="muteIcon" class="fas fa-volume-up"></i>
+        <i id="muteIcon" class="fas fa-volume-up"></i> Mute
       </button>
       <button id="speechButton" class="btn btn-success btn-controls" onclick="playSpeech()">
-        <i class="fas fa-microphone"></i>
+        <i class="fas fa-microphone"></i> Speech
       </button>
     </div>
 
@@ -149,11 +156,6 @@
       // After speech ends, fade music back up
       speechTrack.onended = () => {
         smoothVolumeChange(0.1, savedVolume, 200); // Restore volume
-      };
-
-      speechButton.textContent = 'Playing...';
-      speechTrack.onended = () => {
-        speechButton.textContent = 'Speech';
       };
     }
   </script>
